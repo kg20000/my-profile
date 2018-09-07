@@ -20,6 +20,11 @@ request = pc.makeRequestRSpec()
 # Add a raw PC to the request.
 node = request.XenVM("node")
 node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
+
+iface = node.addInterface("if1")
+iface.component_id = "eth1"
+iface.addAddress(pg.IPv4Address("192.168.1.1", "255.255.255.0"))
+
 node.routable_control_ip = "true"
 
 # Install and execute a script that is contained in the repository.
